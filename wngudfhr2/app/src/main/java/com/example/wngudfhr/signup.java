@@ -1,5 +1,5 @@
 package com.example.wngudfhr;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.wngudfhr.MainActivity;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -68,7 +67,7 @@ public class signup extends AppCompatActivity {
             String email = join_email.getText().toString().trim();
             String password = join_password.getText().toString().trim();
             String check_password = join_pwck.getText().toString().trim();
-            if (!name.equals("") && !email.equals("") && !password.equals("") && !check_password.equals(password)) {
+            if (!name.equals("") && !email.equals("") && !password.equals("") && check_password.equals(password)) {
                 Map<String, Object> USER = new HashMap<>();
                 USER.put("user_id", email);
                 USER.put("user_password", password);
@@ -78,12 +77,11 @@ public class signup extends AppCompatActivity {
                         .add(USER)
                         .addOnSuccessListener(documentReference -> {
                             Toast.makeText(getApplicationContext(), "가입 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+                            finish();
                         })
                         .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "가입 실패 (서버 오류)", Toast.LENGTH_SHORT).show());
             } else {
-                Toast.makeText(getApplicationContext(), "비밀번호가  확인하세요!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "비밀번호를  확인하세요!", Toast.LENGTH_SHORT).show();
             }
         });
     }

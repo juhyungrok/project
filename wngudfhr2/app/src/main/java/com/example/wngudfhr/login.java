@@ -64,6 +64,7 @@ public class login extends AppCompatActivity {
                 Intent intent=new Intent(getApplicationContext(), upload.class);
                 intent.putExtra("userid",userId);
                 startActivity(intent);
+
             });
             item_info.setOnClickListener(v -> {
                 Intent intent=new Intent(getApplicationContext(), info.class);
